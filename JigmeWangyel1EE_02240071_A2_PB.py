@@ -12,14 +12,14 @@ class PokemonBinder:
             page, pos = self.cards[NumberInPokedex]
             return f"Page: {page}, Position: {pos}, Status: Already exists"
 
-        # Calculate page number and grid position
-        index = NumberInPokedex - 1  # zero-based
+       
+        index = NumberInPokedex - 1  
         page_number = index // self.page_size + 1
         position_on_page = index % self.page_size
-        row = position_on_page // 8 + 1  # 8x8 grid, 1-based row
-        col = position_on_page % 8 + 1   # 1-based col
+        row = position_on_page // 8 + 1 
+        col = position_on_page % 8 + 1   
 
-        # Store the card
+        
         self.cards[NumberInPokedex] = (page_number, f"({row},{col})")
         return f"Page: {page_number}, Position: ({row},{col}), Status: Newly added"
 
@@ -75,6 +75,5 @@ class PokemonBinder:
                 print("Invalid option. Please select 1-4.")
 
 
-# Instantiate and run the binder
 binder = PokemonBinder()
 binder.run()

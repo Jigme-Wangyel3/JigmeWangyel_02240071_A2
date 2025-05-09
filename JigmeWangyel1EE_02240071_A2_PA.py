@@ -1,141 +1,135 @@
-import random
 
-class GuessTheNumber:
-    def __init__(self):
-        self.score = 0
-
-    def play(self):
-        print("You chose the game, Guess the number!")
-        end_number = int(input("Please enter the range till where you want the Number to be (The starting Range is 1): "))
-        num = random.randint(1, end_number)
-        print(f"You picked the Range from 1 to {end_number}")
-        user_answer = 0
-
-        while user_answer != num:
-            user_answer = int(input("Guess the number generated: "))
-            if user_answer < 0:
+PlayAgain = True
+while PlayAgain: 
+    Menu = ["1.Guees the Number","2.Rock, paper and scissors","3.Trivia Quiz Game","4.Pokemon Binder Card Binder Manager","0.Exit Game"] 
+    OverAllScore = 0
+    for i in Menu:
+        print(i)
+    x = int(input("Please pick a number from 1-5 according to your interest!: "))
+#Guess Game
+    if x == 1:
+        print("You chose the game, Guess the number!: ")
+        import random
+        EndNumber = int(input("Please enter the range till where you want the Number to be (The starting Range is 1) :"))
+        Num = random.randint(1,EndNumber)
+        print(f"You picked the Range from 1 to {EndNumber}")
+        UserAnswer = 0
+        
+        while UserAnswer != Num:
+            UserAnswer = int(input("Guess the number Generated!: "))
+            if UserAnswer < 0:
                 print("The number is Between 1 And Your Given Range!")
-            elif user_answer > num:
+            elif UserAnswer > Num:
                 print("Your answer is a bit too High!")
-                self.score -= 2
-            elif user_answer < num:
+                OverAllScore -= 2
+            elif UserAnswer < Num:
                 print("Your answer is a bit too Low!")
-                self.score -= 2
+                OverAllScore -= 2
             else:
-                print("CONGRATS! You have Guessed the Right ANSWER! 🎉")
-                self.score += 20
-
-        return self.score
+                print("CONGRATS! You have Guessed the Right ANSWER!🎉")
+                OverAllScore += 20
 
 
-class RockPaperScissors:
-    def __init__(self):
-        self.score = 0
-
-    def play(self):
+    #Rock Paper Scissors Game
+    if x == 2:
         print("You chose Rock, Paper Scissors game!")
-        items = ["Rock", "Paper", "Scissors"]
-        computer = random.choice(items)
-        player = input("Please Enter Rock, Paper or Scissors!: ")
-
-        if player == computer:
-            print("Both you and Computer picked the same item!")
-        elif (player == "Rock" and computer == "Scissors") or \
-             (player == "Paper" and computer == "Rock") or \
-             (player == "Scissors" and computer == "Paper"):
+        import random
+        Items = ["Rock","Paper","Scissors"]
+        Computer = random.choice(Items)
+        Player = input("Please Enter Rock, Paper or Scissors!: ")
+        if Player == Computer:
+            print("Both you and Computer Picked the same Item!")
+        elif Player == "Rock" and Computer == "Scissors":
             print("You won!")
-            self.score += 20
+            OverAllScore += 20
+        elif Player == "Paper" and Computer == "Rock":
+            print("You won!")
+            OverAllScore += 20
+        elif Player == "Scissors" and Computer == "Paper":
+            print("You Won!:)")
+            OverAllScore += 20
         else:
             print("You lose :(")
-            self.score -= 5
-
-        print(f"Player: {player}")
-        print(f"Computer: {computer}")
-        return self.score
-
-
-class TriviaQuiz:
-    def __init__(self):
-        self.score = 0
-
-    def play(self):
-        print("You picked Trivia Quiz Game!")
-        questions = (
-            "When is the National Day of Bhutan?: ",
-            "What is Bhutan's National sport?: ",
-            "How many Alphabets are there?: ",
-            "Who came up with the Theory of Relativity?: ",
-            "What is the smallest country in the world by land area?: "
-        )
-        options = (
-            ("A. December 16", "B. Decemeber 17", "C. December 18", "D. December 19"),
-            ("A. Football", "B. Khuru", "C. Archary", "D. Dego"),
-            ("A. 27", "B. 25", "C. 26", "D. 28"),
-            ("A. Sir Issac Newton", "B. Oppenheimer", "C. Bills gate", "D. Albert Einstein"),
-            ("A. Bhutan", "B. Sri Lanka", "C. Singapore", "D. Vatican City")
-        )
-        answers = ("B", "C", "C", "D", "D")
-
-        for i, question in enumerate(questions):
+            OverAllScore -= 5
+        print(f"player : {Player}")
+        print(f"Computer : {Computer}")
+        
+#Quiz Game
+    if x== 3:
+        print("You picked Trivia Quiz Game! ")
+        Questions = ("When is the National Day of Bhutan?: ",
+                     "What is Bhutan's National sport?: ",
+                     "How many Alphabets are there?: ",
+                     "Who came up with the Theory of Relativity?: ",
+                     " What is the smallest country in the world by land area? :")
+        Options = (("A. December 16 ","B. Decemeber 17 ","C. December 18 ","D. December 19"),
+                   ("A. Football","B. Khuru ","C. Archary","D. Dego"),
+                   ("A. 27 ","B. 25 ","C. 26 ","D. 28 "),
+                   ("A. Sir Issac Newton ","B. Oppenheimer ","C. Bills gate ","D. Albert Einstein "),
+                   ("A. Bhutan ","B. Sri Lanka ","C. Singapore ","D. Vatican City "))
+        Answers = ("B","C","C","D","D")
+        Question_Number = 0
+        for question in Questions:
             print("---------------------------------")
             print(question)
-            for option in options[i]:
+            for option in Options[Question_Number]:
                 print(option)
-            guess = input("Please enter the option (A, B, C, or D) as your answer: ").upper()
-            if guess == answers[i]:
+            Guess = input("Please enter the option (A,B,C, or D) as your answer: ").upper()
+            if Guess == Answers[Question_Number]:
                 print("Your Answer is Correct!")
-                self.score += 20
+                OverAllScore += 20
             else:
                 print("Your Answer is Incorrect!")
-                print(f"{answers[i]} is the Correct Answer!")
-                self.score -= 5
+                print(f"{Answers[Question_Number]} is the Correct Answer!")
+                OverAllScore -= 5   
 
-        return self.score
-
-
-class GameManager:
-    def __init__(self):
-        self.overall_score = 0
-
-    def display_menu(self):
-        print("\nMenu:")
-        print("1. Guess the Number")
-        print("2. Rock, Paper and Scissors")
-        print("3. Trivia Quiz Game")
-        print("0. Exit Game")
-
-    def run(self):
-        play_again = True
-        while play_again:
-            self.display_menu()
-            choice = input("Please pick a number from 1-3 according to your interest (or 0 to exit): ")
-
-            if choice == "1":
-                game = GuessTheNumber()
-                self.overall_score += game.play()
-
-            elif choice == "2":
-                game = RockPaperScissors()
-                self.overall_score += game.play()
-
-            elif choice == "3":
-                game = TriviaQuiz()
-                self.overall_score += game.play()
-
-            elif choice == "0":
-                print("Exiting the game.")
-                break
-
-            else:
-                print("Invalid choice. Please try again.")
-
-            if input("Wanna Play Again? (yes/no): ").lower() != "yes":
-                play_again = False
-
-        print(f"Your Overall Score is {self.overall_score}! Thanks for playing!")
+            Question_Number += 1
+        
+    if x == 4:
+        from JigmeWangyel1EE_02240071_A2_PB import PokemonBinder
+        binder = PokemonBinder()
+    
+            
+    if x == 0:
+        print("Exiting the Game")
 
 
-# Run the game
-if __name__ == "__main__":
-    manager = GameManager()
-    manager.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if not input("Wanna Play Again? (yes/no)").lower() == "yes":
+        PlayAgain = False
+print(f"Your Overall Score is {OverAllScore}! Thanks For Playing!")
