@@ -1,7 +1,7 @@
 
 PlayAgain = True
 while PlayAgain: 
-    Menu = ["1.Guees the Number","2.Rock, paper and scissors","3.Trivia Quiz Game","4.Pokemon Binder Card Binder Manager","0.Exit Game"] 
+    Menu = ["1.Guees the Number","2.Rock, paper and scissors","3.Trivia Quiz Game","4.Pokemon Binder Card Binder Manager","5. Check Your Score","0.Exit Game"] 
     OverAllScore = 0
     for i in Menu:
         print(i)
@@ -88,7 +88,8 @@ while PlayAgain:
     if x == 4:
         from JigmeWangyel_02240071_A2_PB import PokemonBinder
         Game = PokemonBinder()
-    
+    if x == 5:
+        print(f"Your Score is {OverAllScore} right now")
             
     if x == 0:
         print("Exiting the Game")
