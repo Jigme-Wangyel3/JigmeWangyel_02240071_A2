@@ -86,7 +86,7 @@ while PlayAgain:
             Question_Number += 1
         
     if x == 4:
-        from JigmeWangyel1EE_02240071_A2_PB import PokemonBinder
+        from JigmeWangyel_02240071_A2_PB import PokemonBinder
         Game = PokemonBinder()
     
             
